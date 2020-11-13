@@ -35,6 +35,7 @@ function removeProduct(event) {
   const target = event.currentTarget;
   target.closest('tr').remove()
   calculateAll();
+
 }
 
 // ITERATION 5
@@ -46,7 +47,7 @@ function createProduct() {
   let productInput = document.getElementById('inputProduct').value
   let productPrice = document.getElementById('inputPrice').value
 
-  let template = `<td class="name"> <span>${productInput}</span>        </td>        <td class="price">$<span>${productPrice}</span></td>        <td class="quantity">    <input type="number" value="0" min="0" placeholder="Quantity" />        </td>        <td class="subtotal">$<span>0</span></td>        <td class="action">          <button class="btn btn-remove">Remove</button>        </td>`
+  let template = `<td class="name"> <span>${productInput}</span>  </td>  <td class="price">$<span>${productPrice}</span></td>        <td class="quantity">    <input type="number" value="0" min="0" placeholder="Quantity" />        </td>        <td class="subtotal">$<span>0</span></td>        <td class="action">          <button class="btn btn-remove">Remove</button>        </td>`
   let row = tableProducts.insertRow();
   row.className = 'product';
   row.innerHTML = template;
@@ -61,7 +62,7 @@ window.addEventListener('load', () => {
 
   const tableProducts = document.querySelectorAll('.product');
   tableProducts.forEach(product => {
-    product.querySelector('.btn').addEventListener('click', removeProduct)
+    product.querySelector('.btn-remove').addEventListener('click', removeProduct)
   });
 
   const newProductButton = document.getElementById('create');
