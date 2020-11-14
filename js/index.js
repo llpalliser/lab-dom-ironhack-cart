@@ -19,14 +19,20 @@ function calculateAll() {
 
   let total = 0;
   const products = document.querySelectorAll('.product');
-  products.forEach(product => {
 
-    updateSubtotal(product)
-
-    total += updateSubtotal(product)
+  if (products.length < 1) {
+    total = 0
     document.querySelector('#total-value span').innerText = total
+  }
+  else {
+    products.forEach(product => {
+      updateSubtotal(product)
+      total += updateSubtotal(product)
+      document.querySelector('#total-value span').innerText = total
 
-  });
+    });
+  }
+
 }
 
 // ITERATION 4
@@ -49,8 +55,10 @@ function createProduct() {
 
   let template = `<td class="name"> <span>${productInput}</span>  </td>  <td class="price">$<span>${productPrice}</span></td>        <td class="quantity">    <input type="number" value="0" min="0" placeholder="Quantity" />        </td>        <td class="subtotal">$<span>0</span></td>        <td class="action">          <button class="btn btn-remove">Remove</button>        </td>`
   let row = tableProducts.insertRow();
+
   row.className = 'product';
   row.innerHTML = template;
+  row.querySelector('.btn-remove').addEventListener('click', removeProduct)
 
   calculateAll()
 
@@ -68,6 +76,6 @@ window.addEventListener('load', () => {
   const newProductButton = document.getElementById('create');
   newProductButton.addEventListener('click', createProduct);
 }
-    
+
 )
 
